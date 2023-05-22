@@ -3,5 +3,8 @@
   "packageManager": "yarn@3.5.1",
   "devDependencies": {
     "serve": "^14.2.0"
+  },
+  "scripts": {
+    "start": "serve src"
   }
 }
