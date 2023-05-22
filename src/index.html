@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            width: 99%
+        }
+
+        div {
+            flex-direction: column;
+            width: 50%;
+            align-items: center;
+        }
+
+        textarea {
+            width: 98%;
+            height: 300px;
+        }
+
+        button {
+            width: 99%;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-div">
+        <textarea class="input" placeholder="input"></textarea>
+        <button class="button">format</button>
+    </div>
+    <div class="output-div">
+        <textarea class="output" placeholder="output" readonly></textarea>
+        <button class="copy">copy</button>
+    </div>
+
+    <script>
+        document.querySelector(".button").addEventListener("click", () => {
+            const input = document.querySelector(".input").value;
+            const output = document.querySelector(".output");
+            output.value = `/**\n * ${input.replace(/\n/g, "\n * ")}\n */\n`;
+        })
+
+        document.querySelector(".copy").addEventListener("click", () => {
+            navigator.clipboard.writeText(document.querySelector(".output").value).catch(err => {
+                console.log(err);
+                alert("copy failed lol\ncheck console");
+            }).then(() => {
+                document.querySelector(".copy").innerText = "copied";
+                setTimeout(() => {
+                    document.querySelector(".copy").innerText = "copy";
+                }, 1000);
+            })
+        })
+    </script>
+</body>
+</html>
